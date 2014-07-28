@@ -78,6 +78,15 @@ if (EventPluginUtils.useTouchEvents) {
   );
 }
 
+if (EventPluginUtils.usePointerEvents) {
+  dependencies.push(
+    topLevelTypes.topPointerDown,
+    topLevelTypes.topPointerMove,
+    topLevelTypes.topPointerUp,
+    topLevelTypes.topPointerCancel
+  );
+}
+
 var eventTypes = {
   touchTap: {
     phasedRegistrationNames: {

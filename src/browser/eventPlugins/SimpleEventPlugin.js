@@ -27,6 +27,7 @@ var SyntheticFocusEvent = require('SyntheticFocusEvent');
 var SyntheticKeyboardEvent = require('SyntheticKeyboardEvent');
 var SyntheticMouseEvent = require('SyntheticMouseEvent');
 var SyntheticDragEvent = require('SyntheticDragEvent');
+var SyntheticPointerEvent = require('SyntheticPointerEvent');
 var SyntheticTouchEvent = require('SyntheticTouchEvent');
 var SyntheticUIEvent = require('SyntheticUIEvent');
 var SyntheticWheelEvent = require('SyntheticWheelEvent');
@@ -252,41 +253,49 @@ var eventTypes = {
 };
 
 var topLevelEventsToDispatchConfig = {
-  topBlur:        eventTypes.blur,
-  topClick:       eventTypes.click,
-  topContextMenu: eventTypes.contextMenu,
-  topCopy:        eventTypes.copy,
-  topCut:         eventTypes.cut,
-  topDoubleClick: eventTypes.doubleClick,
-  topDrag:        eventTypes.drag,
-  topDragEnd:     eventTypes.dragEnd,
-  topDragEnter:   eventTypes.dragEnter,
-  topDragExit:    eventTypes.dragExit,
-  topDragLeave:   eventTypes.dragLeave,
-  topDragOver:    eventTypes.dragOver,
-  topDragStart:   eventTypes.dragStart,
-  topDrop:        eventTypes.drop,
-  topError:       eventTypes.error,
-  topFocus:       eventTypes.focus,
-  topInput:       eventTypes.input,
-  topKeyDown:     eventTypes.keyDown,
-  topKeyPress:    eventTypes.keyPress,
-  topKeyUp:       eventTypes.keyUp,
-  topLoad:        eventTypes.load,
-  topMouseDown:   eventTypes.mouseDown,
-  topMouseMove:   eventTypes.mouseMove,
-  topMouseOut:    eventTypes.mouseOut,
-  topMouseOver:   eventTypes.mouseOver,
-  topMouseUp:     eventTypes.mouseUp,
-  topPaste:       eventTypes.paste,
-  topReset:       eventTypes.reset,
-  topScroll:      eventTypes.scroll,
-  topSubmit:      eventTypes.submit,
-  topTouchCancel: eventTypes.touchCancel,
-  topTouchEnd:    eventTypes.touchEnd,
-  topTouchMove:   eventTypes.touchMove,
-  topTouchStart:  eventTypes.touchStart,
-  topWheel:       eventTypes.wheel
+  topBlur:          eventTypes.blur,
+  topClick:         eventTypes.click,
+  topContextMenu:   eventTypes.contextMenu,
+  topCopy:          eventTypes.copy,
+  topCut:           eventTypes.cut,
+  topDoubleClick:   eventTypes.doubleClick,
+  topDrag:          eventTypes.drag,
+  topDragEnd:       eventTypes.dragEnd,
+  topDragEnter:     eventTypes.dragEnter,
+  topDragExit:      eventTypes.dragExit,
+  topDragLeave:     eventTypes.dragLeave,
+  topDragOver:      eventTypes.dragOver,
+  topDragStart:     eventTypes.dragStart,
+  topDrop:          eventTypes.drop,
+  topError:         eventTypes.error,
+  topFocus:         eventTypes.focus,
+  topInput:         eventTypes.input,
+  topKeyDown:       eventTypes.keyDown,
+  topKeyPress:      eventTypes.keyPress,
+  topKeyUp:         eventTypes.keyUp,
+  topLoad:          eventTypes.load,
+  topMouseDown:     eventTypes.mouseDown,
+  topMouseMove:     eventTypes.mouseMove,
+  topMouseOut:      eventTypes.mouseOut,
+  topMouseOver:     eventTypes.mouseOver,
+  topMouseUp:       eventTypes.mouseUp,
+  topPaste:         eventTypes.paste,
+  topPointerCancel: eventTypes.pointerCancel,
+  topPointerDown:   eventTypes.pointerDown,
+  topPointerEnter:  eventTypes.pointerEnter,
+  topPointerLeave:  eventTypes.pointerLeave,
+  topPointerMove:   eventTypes.pointerMove,
+  topPointerOut:    eventTypes.pointerOut,
+  topPointerOver:   eventTypes.pointerOver,
+  topPointerUp:     eventTypes.pointerUp,
+  topReset:         eventTypes.reset,
+  topScroll:        eventTypes.scroll,
+  topSubmit:        eventTypes.submit,
+  topTouchCancel:   eventTypes.touchCancel,
+  topTouchEnd:      eventTypes.touchEnd,
+  topTouchMove:     eventTypes.touchMove,
+  topTouchStart:    eventTypes.touchStart,
+  topWheel:         eventTypes.wheel
 };
 
 for (var topLevelType in topLevelEventsToDispatchConfig) {
@@ -381,6 +390,16 @@ var SimpleEventPlugin = {
       case topLevelTypes.topDragStart:
       case topLevelTypes.topDrop:
         EventConstructor = SyntheticDragEvent;
+        break;
+      case topLevelTypes.topPointerCancel:
+      case topLevelTypes.topPointerDown:
+      case topLevelTypes.topPointerEnter:
+      case topLevelTypes.topPointerLeave:
+      case topLevelTypes.topPointerMove:
+      case topLevelTypes.topPointerOut:
+      case topLevelTypes.topPointerOver:
+      case topLevelTypes.topPointerUp:
+        EventConstructor = SyntheticPointerEvent;
         break;
       case topLevelTypes.topTouchCancel:
       case topLevelTypes.topTouchEnd:

@@ -47,18 +47,23 @@ var injection = {
 var topLevelTypes = EventConstants.topLevelTypes;
 
 function isEndish(topLevelType) {
-  return topLevelType === topLevelTypes.topMouseUp ||
-         topLevelType === topLevelTypes.topTouchEnd ||
-         topLevelType === topLevelTypes.topTouchCancel;
+  return topLevelType === topLevelTypes.topMouseUp     ||
+         topLevelType === topLevelTypes.topTouchEnd    ||
+         topLevelType === topLevelTypes.topTouchCancel ||
+         topLevelType === topLevelTypes.topPointerUp   ||
+         topLevelType === topLevelTypes.topPointerCancel;
 }
 
 function isMoveish(topLevelType) {
   return topLevelType === topLevelTypes.topMouseMove ||
-         topLevelType === topLevelTypes.topTouchMove;
+         topLevelType === topLevelTypes.topTouchMove ||
+         topLevelType === topLevelTypes.topPointerMove;
 }
+
 function isStartish(topLevelType) {
-  return topLevelType === topLevelTypes.topMouseDown ||
-         topLevelType === topLevelTypes.topTouchStart;
+  return topLevelType === topLevelTypes.topMouseDown  ||
+         topLevelType === topLevelTypes.topTouchStart ||
+         topLevelType === topLevelTypes.topPointerDown;
 }
 
 
@@ -218,7 +223,8 @@ var EventPluginUtils = {
   executeDispatchesInOrderStopAtTrue: executeDispatchesInOrderStopAtTrue,
   hasDispatches: hasDispatches,
   injection: injection,
-  useTouchEvents: false
+  useTouchEvents: false,
+  usePointerEvents: false
 };
 
 module.exports = EventPluginUtils;

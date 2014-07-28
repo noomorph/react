@@ -72,6 +72,9 @@ var React = {
   initializeTouchEvents: function(shouldUseTouch) {
     EventPluginUtils.useTouchEvents = shouldUseTouch;
   },
+  initializePointerEvents: function(shouldUsePointer) {
+    EventPluginUtils.usePointerEvents = shouldUsePointer;
+  },
   createClass: ReactCompositeComponent.createClass,
   createDescriptor: createDescriptor,
   createFactory: createFactory,
